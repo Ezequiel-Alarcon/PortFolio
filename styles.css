@@ -1,0 +1,516 @@
+/*
+==================================
+1. RESETEO Y FUENTE GLOBAL
+==================================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/*
+==================================
+2. VARIABLES DE COLOR 
+==================================
+*/
+:root {
+    --color-fondo: #10101a;
+    --color-fondo-tarjeta: #1a1a29;
+    --color-primario: #7f5af0;
+    --color-secundario: #2cb67d;
+    --color-texto: #ffffff;
+    --color-texto-gris: #94a1b2;
+}
+
+/*
+==================================
+3. ESTILOS GENERALES
+==================================
+*/
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/*
+==================================
+4. CLASES REUTILIZABLES
+==================================
+*/
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--color-primario);
+}
+
+/*
+==================================
+5. HEADER Y NAVEGACIÓN 
+==================================
+*/
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar {
+    width: 90%; /* Más ancho en mobile */
+    margin: 15px auto;
+    padding: 0 20px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, var(--color-fondo-tarjeta), rgba(27, 27, 40, 0));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 222, 222, 0.07);
+    border-radius: 50px;
+}
+
+.navbar__brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-secundario);
+}
+
+.navbar__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger__line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-texto);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar__menu {
+    position: absolute;
+    top: 90px; /* Un poco más abajo para que no choque */
+    left: 5%; /* Para que coincida con el 90% de ancho del nav */
+    width: 90%;
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.navbar__link {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: 1.2rem;
+    font-family: 'Fira Code', monospace;
+}
+
+/*
+==================================
+6. ESTADOS ACTIVOS 
+==================================
+*/
+.navbar__menu--open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.navbar__hamburger--open .hamburger__line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.navbar__hamburger--open .hamburger__line:nth-child(2) {
+    opacity: 0;
+}
+.navbar__hamburger--open .hamburger__line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/*
+==================================
+7. SECCIÓN HERO 
+==================================
+*/
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 150px 30px 80px;
+    gap: 30px;
+}
+
+.hero__content {
+    order: 2;
+}
+
+.hero__image-container {
+    order: 1;
+}
+
+.hero__title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero__title > span {
+    transition: color 0.3s ease-in-out;
+}
+
+.hero__title > span:hover {
+    color: var(--color-secundario);
+}
+
+.hero__subtitle {
+    font-size: 1.2rem;
+    color: var(--color-texto-gris);
+    margin-bottom: 30px;
+}
+
+.hero__cta {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: var(--color-secundario);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero__cta:hover {
+    background-color: #25a26c;
+    transform: translateY(-3px);
+}
+
+.hero__image-container img {
+    max-width: 280px;
+    border-radius: 50%;
+}
+
+/*
+==================================
+8. SECCIÓN ABOUT ME
+==================================
+*/
+.about {
+    padding: 100px 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about__content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-texto-gris);
+}
+
+/*
+==================================
+9. SECCIÓN SKILLS 
+==================================
+*/
+.skills {
+    padding: 100px 30px;
+}
+
+.skills__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.skill-card {
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: 12px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card__icon {
+    width: 100px;
+    height: 80px;
+}
+
+.skill-card__name {
+    font-size: 1rem;
+    color: var(--color-texto-gris);
+}
+
+/*
+==================================
+10. SECCIÓN PROJECTS
+==================================
+*/
+.projects {
+    padding: 100px 30px;
+}
+
+.projects__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card__image {
+    width: 100%;
+}
+
+.project-card__content {
+    padding: 25px;
+}
+
+.project-card__title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--color-primario);
+}
+
+.project-card__description {
+    color: var(--color-texto-gris);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.project-card__links {
+    display: flex;
+    gap: 15px;
+    margin-top: auto; 
+}
+
+.project-card__link {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.project-card__link:nth-child(1) {
+    background-color: transparent;
+    border: 1px solid var(--color-secundario);
+    color: var(--color-secundario);
+}
+
+.project-card__link:nth-child(1):hover {
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+.project-card__link:nth-child(2) {
+    background-color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+    color: white;
+}
+
+.project-card__link:nth-child(2):hover {
+    background-color: #694ac2;
+}
+
+/*
+==================================
+11. SECCIÓN CONTACT 
+==================================
+*/
+.contact {
+    padding: 100px 30px;
+}
+
+.contact__form {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact__form input,
+.contact__form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--color-texto-gris);
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: 8px;
+    color: var(--color-texto);
+    font-size: 1rem;
+}
+
+.contact__form button {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--color-secundario);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/*
+==================================
+12. FOOTER 
+==================================
+*/
+.main-footer {
+    padding: 40px 30px;
+    text-align: center;
+    border-top: 1px solid var(--color-fondo-tarjeta);
+    margin-top: 60px;
+}
+
+.footer__social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    width: 25px;
+    height: 25px;
+    fill: var(--color-texto-gris);
+    transition: fill 0.3s ease;
+}
+
+.social-icon:hover {
+    fill: var(--color-primario);
+}
+
+.footer__copyright {
+    color: var(--color-texto-gris);
+    font-size: 0.9rem;
+}
+
+/*
+==================================================================
+13. MEDIA QUERIES (Ajustes para pantallas grandes >= 769px)
+==================================================================
+*/
+@media (min-width: 769px) {
+
+    /* --- Navegación --- */
+    .navbar {
+        width: 80%;
+    }
+    
+    .navbar__hamburger {
+        display: none;
+    }
+
+    .navbar__menu {
+        display: flex;
+        position: static;
+        width: auto;
+        background-color: transparent;
+        flex-direction: row;
+        padding: 0;
+        gap: 40px;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .navbar__link:hover {
+        color: var(--color-primario);
+    }
+
+    .navbar__link.active {
+        color: var(--color-primario);
+    }
+
+    /* --- Sección Hero --- */
+    .hero {
+        flex-direction: row;
+        text-align: left;
+        padding-top: 80px;
+        gap: 40px;
+    }
+    
+    .hero__content {
+        order: 1;
+    }
+    
+    .hero__image-container {
+        order: 2;
+    }
+    
+    .hero__title {
+        font-size: 3.5rem;
+    }
+    
+    .hero__subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .hero__image-container img {
+        max-width: 400px;
+    }
+    
+    .hero__cta:hover {
+        transform: translateY(-3px);
+    }
+
+    /* --- Sección Skills --- */
+    .skills__list {
+        max-width: 800px;
+        gap: 30px;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* --- Sección Projects --- */
+    .projects__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card:hover {
+        transform: scale(1.03);
+    }
+}

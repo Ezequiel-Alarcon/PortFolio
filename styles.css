@@ -360,7 +360,7 @@ img {
 }
 
 .contact__form {
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -492,6 +492,28 @@ img {
     
     .hero__cta:hover {
         transform: translateY(-3px);
+    }
+
+    /* --- Secciones de pantalla completa en desktop --- */
+    .about {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .skills {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .projects {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     /* --- Sección Skills --- */

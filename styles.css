@@ -182,7 +182,7 @@ img {
     transition: color 0.3s ease-in-out;
 }
 
-.hero__title > span:hover {
+.hero__title--highlight {
     color: var(--color-secundario);
 }
 

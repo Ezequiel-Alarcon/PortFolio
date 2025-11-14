@@ -4,7 +4,6 @@ MI SCRIPT PARA EL PORTFOLIO
 ==================================
 */
 
-// Espero a que todo el HTML se cargue antes de ejecutar el script
 document.addEventListener('DOMContentLoaded', function () {
 
     /*
@@ -80,13 +79,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (contactForm) {
         contactForm.addEventListener('submit', async function (e) {
-            e.preventDefault(); // Evito que se recargue la página
+            e.preventDefault();
 
             const formData = new FormData(contactForm);
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
-
-            // Cambio el texto del botón mientras se envía
             submitButton.textContent = 'Enviando...';
             submitButton.disabled = true;
 
@@ -101,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 if (response.ok) {
-                    // Muestro mensaje de éxito
                     submitButton.textContent = '¡Mensaje Enviado! ✓';
                     submitButton.style.backgroundColor = '#2cb67d';
 
@@ -118,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     throw new Error('Error al enviar');
                 }
             } catch (error) {
-                // Si hay un error, lo muestro
                 submitButton.textContent = 'Error al enviar';
                 submitButton.style.backgroundColor = '#e63946';
 
@@ -130,5 +125,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    
+    /*
+    ==================================
+    5. EFECTO "STICKY" PARA EL TÍTULO DEL HERO
+    ==================================
+    */
+    const titleSpans = document.querySelectorAll('.hero__title span');
 
+    titleSpans.forEach(span => {
+        span.addEventListener('mouseover', (e) => {
+            e.target.classList.add('hero__title--highlight');
+
+            setTimeout(() => {
+                e.target.classList.remove('hero__title--highlight');
+            }, 500);
+        });
+    });
 });
